@@ -1,11 +1,11 @@
 package academy.mindswap;
 
 import academy.mindswap.field.Field;
+import academy.mindswap.field.Position;
 import academy.mindswap.gameobjects.fruit.Fruit;
 import academy.mindswap.gameobjects.snake.Direction;
 import academy.mindswap.gameobjects.snake.Snake;
 import com.googlecode.lanterna.input.Key;
-
 
 public class Game {
 
@@ -21,7 +21,7 @@ public class Game {
 
     public void start() throws InterruptedException {
 
-        // generateFruit(); // uncomment when it's time to introduce fruits
+        generateFruit();
 
         while (true) {
             Thread.sleep(delay);
@@ -33,10 +33,11 @@ public class Game {
     }
 
     private void generateFruit() {
-
+        this.fruit = new Fruit();
+        Field.drawFruit(fruit);
     }
 
-    private void moveSnake() throws InterruptedException {
+    private void moveSnake() {
 
         Key k = Field.readInput();
         if (k != null) {
@@ -62,9 +63,13 @@ public class Game {
     }
 
     private void checkCollisions() {
-        // Colidir com uma parede (esq ou dir)
+        if (snake.getHead().equals(fruit)) {
+            snake.increaseSize();
+            generateFruit();
+        } else if (snake.getHead().getRow() == 0 || snake.getHead().getRow() == Field.getHeight() ||
+                snake.getHead().getCol() == 0 || snake.getHead().getCol() == Field.getWidth()) {
+            snake.die();
+        }
         // Colidir com ela própria
-        // Colidir com topo e inferior
-        // Colidir com maça -> increase size();
     }
 }
