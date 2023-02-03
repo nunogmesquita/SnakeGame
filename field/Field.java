@@ -44,7 +44,7 @@ public final class Field {
 
         Terminal.Color snakeColor = Terminal.Color.GREEN;
 
-        if (!snake.isAlive()){
+        if (!snake.isAlive()) {
             snakeColor = Terminal.Color.RED;
         }
 

@@ -1,7 +1,6 @@
 package academy.mindswap;
 
 import academy.mindswap.field.Field;
-import academy.mindswap.field.Position;
 import academy.mindswap.gameobjects.fruit.Fruit;
 import academy.mindswap.gameobjects.snake.Direction;
 import academy.mindswap.gameobjects.snake.Snake;
@@ -23,7 +22,7 @@ public class Game {
 
         generateFruit();
 
-        while (true) {
+        while (snake.isAlive()) {
             Thread.sleep(delay);
             Field.clearTail(snake);
             moveSnake();
@@ -63,8 +62,8 @@ public class Game {
     }
 
     private void checkCollisions() {
-        if (snake.getHead().equals(fruit)) {
-            snake.increaseSize();
+        if (snake.getHead().equals(fruit.getPosition())) {
+            snake.increaseSize(fruit.getPosition());
             generateFruit();
         } else if (snake.getHead().getRow() == 0 || snake.getHead().getRow() == Field.getHeight() ||
                 snake.getHead().getCol() == 0 || snake.getHead().getCol() == Field.getWidth()) {
