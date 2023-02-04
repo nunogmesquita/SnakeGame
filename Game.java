@@ -66,8 +66,8 @@ public class Game {
         if (snake.getHead().equals(fruit.getPosition())) {
             snake.increaseSize(fruit.getPosition());
             generateFruit();
-        } else if (snake.getHead().getRow() == 0 || snake.getHead().getRow() == Field.getHeight() ||
-                snake.getHead().getCol() == 0 || snake.getHead().getCol() == Field.getWidth()) {
+        } else if (snake.getHead().getRow() == 0 || snake.getHead().getRow() == (Field.getHeight()-1) ||
+                snake.getHead().getCol() == 0 || snake.getHead().getCol() == (Field.getWidth()-1)) {
             snake.die();
         }
         // Colidir com ela própria
