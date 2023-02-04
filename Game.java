@@ -18,6 +18,7 @@ public class Game {
         this.delay = delay;
     }
 
+
     public void start() throws InterruptedException {
 
         generateFruit();

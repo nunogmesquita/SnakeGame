@@ -1,5 +1,6 @@
 package academy.mindswap.gameobjects.snake;
 
+import academy.mindswap.Game;
 import academy.mindswap.field.Position;
 
 import java.util.LinkedList;
@@ -26,6 +27,7 @@ public class Snake {
     }
 
     public void move(Direction direction) {
+        if (invalidMovements(direction)) return;
         this.direction = direction;
         switch (direction) {
             case RIGHT:
@@ -45,6 +47,16 @@ public class Snake {
                 getFullSnake().addFirst(new Position(getFullSnake().get(0).getCol(), getFullSnake().get(0).getRow() + 1));
                 break;
         }
+    }
+
+    private boolean invalidMovements(Direction direction) {
+        if (this.direction == Direction.RIGHT && direction == Direction.LEFT ||
+                this.direction == Direction.LEFT && direction == Direction.RIGHT ||
+                this.direction == Direction.UP && direction == Direction.DOWN ||
+                this.direction == Direction.DOWN && direction == Direction.UP){
+            return true;
+        }
+        return false;
     }
 
     public void move() {
