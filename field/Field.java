@@ -8,12 +8,20 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.ScreenWriter;
 import com.googlecode.lanterna.terminal.Terminal;
 
+
 public final class Field {
 
     private static final String BORDER_STRING = "▒";
     private static final String SNAKE_BODY_STRING = "#";
     private static final String SNAKE_HEAD_STRING = "0";
     private static final String FRUIT_STRING = "@";
+    private static final String GAME_OVER = "\n" +
+            "░██████╗░░█████╗░███╗░░░███╗███████╗  ░█████╗░██╗░░░██╗███████╗██████╗░\n" +
+            "██╔════╝░██╔══██╗████╗░████║██╔════╝  ██╔══██╗██║░░░██║██╔════╝██╔══██╗\n" +
+            "██║░░██╗░███████║██╔████╔██║█████╗░░  ██║░░██║╚██╗░██╔╝█████╗░░██████╔╝\n" +
+            "██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░  ██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗\n" +
+            "╚██████╔╝██║░░██║██║░╚═╝░██║███████╗  ╚█████╔╝░░╚██╔╝░░███████╗██║░░██║\n" +
+            "░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝  ░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝";
 
     private static int width;
     private static int height;
@@ -46,6 +54,15 @@ public final class Field {
 
         if (!snake.isAlive()) {
             snakeColor = Terminal.Color.RED;
+            String[] splitString = GAME_OVER.split("\n");
+            int i = 0;
+            for (String splitOne:splitString
+                 ) {
+                screen.putString(15,height/3+i, splitOne, Terminal.Color.CYAN, null);
+                i++;
+            }
+
+
         }
 
         Position head = snake.getHead();
