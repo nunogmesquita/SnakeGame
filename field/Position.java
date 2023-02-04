@@ -7,14 +7,6 @@ public class Position {
     private int col;
     private int row;
 
-    public void setCol(int col) {
-        this.col = col;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

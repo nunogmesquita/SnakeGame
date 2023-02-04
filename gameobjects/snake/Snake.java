@@ -1,6 +1,5 @@
 package academy.mindswap.gameobjects.snake;
 
-import academy.mindswap.Game;
 import academy.mindswap.field.Position;
 
 import java.util.LinkedList;
@@ -9,9 +8,13 @@ public class Snake {
 
     private final static int SNAKE_INITIAL_SIZE = 3;
     LinkedList<Position> snake;
-    private Direction direction = Direction.RIGHT;
+    private Direction direction;
     private boolean alive;
     private int applesEaten;
+
+    public int getApplesEaten() {
+        return applesEaten;
+    }
 
     public void increaseSize(Position position) {
         applesEaten++;
@@ -23,6 +26,7 @@ public class Snake {
         for (int i = 0; i < getSnakeSize(); i++) {
             snake.add(i, new Position(10 - i, 10));
         }
+        this.direction = Direction.RIGHT;
         this.alive = true;
     }
 
@@ -30,33 +34,30 @@ public class Snake {
         if (invalidMovements(direction)) return;
         this.direction = direction;
         switch (direction) {
-            case RIGHT:
+            case RIGHT -> {
                 getFullSnake().removeLast();
                 getFullSnake().addFirst(new Position(getFullSnake().get(0).getCol() + 1, getFullSnake().get(0).getRow()));
-                break;
-            case LEFT:
+            }
+            case LEFT -> {
                 getFullSnake().removeLast();
                 getFullSnake().addFirst(new Position(getFullSnake().get(0).getCol() - 1, getFullSnake().get(0).getRow()));
-                break;
-            case UP:
+            }
+            case UP -> {
                 getFullSnake().removeLast();
                 getFullSnake().addFirst(new Position(getFullSnake().get(0).getCol(), getFullSnake().get(0).getRow() - 1));
-                break;
-            case DOWN:
+            }
+            case DOWN -> {
                 getFullSnake().removeLast();
                 getFullSnake().addFirst(new Position(getFullSnake().get(0).getCol(), getFullSnake().get(0).getRow() + 1));
-                break;
+            }
         }
     }
 
     private boolean invalidMovements(Direction direction) {
-        if (this.direction == Direction.RIGHT && direction == Direction.LEFT ||
+        return this.direction == Direction.RIGHT && direction == Direction.LEFT ||
                 this.direction == Direction.LEFT && direction == Direction.RIGHT ||
                 this.direction == Direction.UP && direction == Direction.DOWN ||
-                this.direction == Direction.DOWN && direction == Direction.UP){
-            return true;
-        }
-        return false;
+                this.direction == Direction.DOWN && direction == Direction.UP;
     }
 
     public void move() {

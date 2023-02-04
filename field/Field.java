@@ -15,21 +15,20 @@ public final class Field {
     private static final String SNAKE_BODY_STRING = "#";
     private static final String SNAKE_HEAD_STRING = "0";
     private static final String FRUIT_STRING = "@";
-    private static final String GAME_OVER = "\n" +
-            "░██████╗░░█████╗░███╗░░░███╗███████╗  ░█████╗░██╗░░░██╗███████╗██████╗░\n" +
-            "██╔════╝░██╔══██╗████╗░████║██╔════╝  ██╔══██╗██║░░░██║██╔════╝██╔══██╗\n" +
-            "██║░░██╗░███████║██╔████╔██║█████╗░░  ██║░░██║╚██╗░██╔╝█████╗░░██████╔╝\n" +
-            "██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░  ██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗\n" +
-            "╚██████╔╝██║░░██║██║░╚═╝░██║███████╗  ╚█████╔╝░░╚██╔╝░░███████╗██║░░██║\n" +
-            "░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝  ░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝";
+    private static final String GAME_OVER = """
+
+            ░██████╗░░█████╗░███╗░░░███╗███████╗  ░█████╗░██╗░░░██╗███████╗██████╗░
+            ██╔════╝░██╔══██╗████╗░████║██╔════╝  ██╔══██╗██║░░░██║██╔════╝██╔══██╗
+            ██║░░██╗░███████║██╔████╔██║█████╗░░  ██║░░██║╚██╗░██╔╝█████╗░░██████╔╝
+            ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░  ██║░░██║░╚████╔╝░██╔══╝░░██╔══██╗
+            ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗  ╚█████╔╝░░╚██╔╝░░███████╗██║░░██║
+            ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝  ░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝""";
 
     private static int width;
     private static int height;
     private static Screen screen;
     private static ScreenWriter screenWriter;
 
-    private Field() {
-    }
 
     public static void init(int width, int height) {
 
@@ -46,6 +45,11 @@ public final class Field {
 
         drawWalls();
         screen.refresh();
+
+    }
+
+    public static void score(int applesEaten) {
+        screenWriter.drawString(45, 0, "Score: " + applesEaten);
     }
 
     public static void drawSnake(Snake snake) {
@@ -56,12 +60,11 @@ public final class Field {
             snakeColor = Terminal.Color.RED;
             String[] splitString = GAME_OVER.split("\n");
             int i = 0;
-            for (String splitOne:splitString
-                 ) {
-                screen.putString(15,height/3+i, splitOne, Terminal.Color.CYAN, null);
+            for (String splitOne : splitString
+            ) {
+                screen.putString(15, height / 3 + i, splitOne, Terminal.Color.CYAN, null);
                 i++;
             }
-
 
         }
 
@@ -99,7 +102,7 @@ public final class Field {
     }
 
     public static void drawFruit(Fruit fruit) {
-        screen.putString(fruit.getPosition().getCol(), fruit.getPosition().getRow(), FRUIT_STRING, Terminal.Color.MAGENTA, null);
+        screen.putString(fruit.fruitPosition().getCol(), fruit.fruitPosition().getRow(), FRUIT_STRING, Terminal.Color.MAGENTA, null);
     }
 
     public static int getWidth() {
@@ -108,5 +111,9 @@ public final class Field {
 
     public static int getHeight() {
         return height;
+    }
+
+    public static Position randomScreenAppearance() {
+        return new Position((int) (Math.random() * (Field.getWidth() - 2)) + 1, (int) (Math.random() * (Field.getHeight() - 2)) + 1);
     }
 }

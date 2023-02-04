@@ -1,14 +1,12 @@
 package academy.mindswap;
 
 /*
-1. Não anda para o sentido inverso - TIAGO
-2. Collide com ele próprio termina o jogo- NUNO
-EXTRA:
-3. Acrescentar score;
-4. Quando ele chega a uma parede voltar para a outra
-5. ENDGAME maricas;
-FINAL:
-REFACTOR!!!!!!
+SUGESTÃO DE FEATURES
+1. Quando ele chega a uma parede voltar para a outra;
+2. Acrescentar o MaxScore (e ter username para esse score?);
+3. A partir de x frutas (10?) o delay assumir metade do valor e aparecerem 2 frutas de cada vez;
+4. No final do jogo poder-se clicar uma tecla para reiniciar?
+Refactor;
  */
 
 public class Main {

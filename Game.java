@@ -8,16 +8,15 @@ import com.googlecode.lanterna.input.Key;
 
 public class Game {
 
-    private Snake snake;
+    private final Snake snake;
     private Fruit fruit;
-    private int delay;
+    private final int delay;
 
     public Game(int cols, int rows, int delay) {
         Field.init(cols, rows);
         snake = new Snake();
         this.delay = delay;
     }
-
 
     public void start() throws InterruptedException {
 
@@ -27,14 +26,14 @@ public class Game {
             Thread.sleep(delay);
             Field.clearTail(snake);
             moveSnake();
+            Field.score(snake.getApplesEaten());
             checkCollisions();
             Field.drawSnake(snake);
         }
     }
 
     private void generateFruit() {
-        this.fruit = new Fruit();
-        Field.drawFruit(fruit);
+        Field.drawFruit(this.fruit = new Fruit());
     }
 
     private void moveSnake() {
@@ -63,13 +62,16 @@ public class Game {
     }
 
     private void checkCollisions() {
-        if (snake.getHead().equals(fruit.getPosition())) {
-            snake.increaseSize(fruit.getPosition());
+        if (snake.getHead().equals(fruit.fruitPosition())) {
+            snake.increaseSize(fruit.fruitPosition());
             generateFruit();
-        } else if (snake.getHead().getRow() == 0 || snake.getHead().getRow() == (Field.getHeight()-1) ||
-                snake.getHead().getCol() == 0 || snake.getHead().getCol() == (Field.getWidth()-1)) {
+        } else if (snake.getHead().getRow() == 0 || snake.getHead().getRow() == (Field.getHeight() - 1) ||
+                snake.getHead().getCol() == 0 || snake.getHead().getCol() == (Field.getWidth() - 1)) {
             snake.die();
+        } else for (int i = 1; i < snake.getSnakeSize(); i++) {
+            if (snake.getHead().equals(snake.getFullSnake().get(i))) {
+                snake.die();
+            }
         }
-        // Colidir com ela própria
     }
 }

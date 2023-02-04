@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b294a9aa-dd73-44ce-87fb-5492ec04d434" name="Changes" comment="collisions corrected">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/field/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/field/Field.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/field/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/field/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameobjects/fruit/Fruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameobjects/fruit/Fruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameobjects/snake/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameobjects/snake/Snake.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,5 +131,10 @@
         <watch expression="this.delay" language="JAVA" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SnakeGame$Main.ic" NAME="Main Coverage Results" MODIFIED="1675533085874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>academy.mindswap.*</FILTER>
+    </SUITE>
   </component>
 </project>

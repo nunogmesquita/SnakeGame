@@ -4,14 +4,14 @@ import academy.mindswap.field.Field;
 import academy.mindswap.field.Position;
 
 public class Fruit {
-    int col;
-    int row;
+    private Position position;
+
     public Fruit() {
-        col = (int) (Math.random() * (Field.getWidth() - 2)) + 1;
-        row = (int) (Math.random() * (Field.getHeight() - 2)) + 1;
+        this.position = Field.randomScreenAppearance();
     }
 
-    public Position getPosition() {
-        return new Position(col, row);
+
+    public Position fruitPosition() {
+        return this.position;
     }
 }
