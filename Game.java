@@ -24,13 +24,13 @@ public class Game {
 
         while (snake.isAlive()) {
             Thread.sleep(delay);
-            Field.drawSnake(snake);
             Field.clearTail(snake);
             moveSnake();
+            Field.score(snake.getEatedApples());
             checkCollisions();
             suicide();
             eatApple();
-            Field.score(snake.getApplesEaten());
+            Field.drawSnake(snake);
         }
     }
 

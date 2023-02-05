@@ -10,14 +10,18 @@ public class Snake {
     LinkedList<Position> snake;
     private Direction direction;
     private boolean alive;
-    private int applesEaten;
+    private int eatedApples;
 
-    public int getApplesEaten() {
-        return applesEaten;
+    public int getEatedApples() {
+        return eatedApples;
+    }
+
+    public void eatApple() {
+        this.eatedApples++;
     }
 
     public void increaseSize(Position position) {
-        applesEaten++;
+        eatApple();
         snake.addFirst(position);
     }
 
@@ -85,6 +89,6 @@ public class Snake {
     }
 
     public int getSnakeSize() {
-        return applesEaten + SNAKE_INITIAL_SIZE;
+        return eatedApples + SNAKE_INITIAL_SIZE;
     }
 }
