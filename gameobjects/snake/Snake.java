@@ -10,16 +10,7 @@ public class Snake {
     LinkedList<Position> snake;
     private Direction direction;
     private boolean alive;
-    private int applesEaten;
-
-    public int getApplesEaten() {
-        return applesEaten;
-    }
-
-    public void increaseSize(Position position) {
-        applesEaten++;
-        snake.addLast(position);
-    }
+    private int eatedApples;
 
     public Snake() {
         this.snake = new LinkedList<>();
@@ -29,6 +20,7 @@ public class Snake {
         this.direction = Direction.RIGHT;
         this.alive = true;
     }
+
 
     public void move(Direction direction) {
         if (invalidMovements(direction)) return;
@@ -53,15 +45,15 @@ public class Snake {
         }
     }
 
+    public void move() {
+        move(this.direction);
+    }
+
     private boolean invalidMovements(Direction direction) {
         return this.direction == Direction.RIGHT && direction == Direction.LEFT ||
                 this.direction == Direction.LEFT && direction == Direction.RIGHT ||
                 this.direction == Direction.UP && direction == Direction.DOWN ||
                 this.direction == Direction.DOWN && direction == Direction.UP;
-    }
-
-    public void move() {
-        move(this.direction);
     }
 
     public void die() {
@@ -85,6 +77,19 @@ public class Snake {
     }
 
     public int getSnakeSize() {
-        return applesEaten + SNAKE_INITIAL_SIZE;
+        return eatedApples + SNAKE_INITIAL_SIZE;
+    }
+
+    public void increaseSize(Position position) {
+        increaseEatedApples();
+        snake.addLast(position);
+    }
+
+    public int getEatedApples() {
+        return eatedApples;
+    }
+
+    public void increaseEatedApples() {
+        this.eatedApples++;
     }
 }

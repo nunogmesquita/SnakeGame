@@ -10,7 +10,6 @@ public class Fruit {
         this.position = Field.randomScreenAppearance();
     }
 
-
     public Position fruitPosition() {
         return this.position;
     }

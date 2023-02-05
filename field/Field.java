@@ -101,7 +101,7 @@ public final class Field {
         return screen.readInput();
     }
 
-    public static void drawFruit(Fruit fruit) {
+    public static void drawFruits(Fruit fruit) {
         screen.putString(fruit.fruitPosition().getCol(), fruit.fruitPosition().getRow(), FRUIT_STRING, Terminal.Color.MAGENTA, null);
     }
 

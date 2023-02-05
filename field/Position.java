@@ -7,18 +7,6 @@ public class Position {
     private int col;
     private int row;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Position position)) return false;
-        return getCol() == position.getCol() && getRow() == position.getRow();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getCol(), getRow());
-    }
-
     public Position(int col, int row) {
         this.col = col;
         this.row = row;
@@ -30,5 +18,17 @@ public class Position {
 
     public int getRow() {
         return row;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Position position)) return false;
+        return getCol() == position.getCol() && getRow() == position.getRow();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCol(), getRow());
     }
 }
