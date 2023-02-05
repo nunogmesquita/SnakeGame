@@ -24,11 +24,13 @@ public class Game {
 
         while (snake.isAlive()) {
             Thread.sleep(delay);
+            Field.drawSnake(snake);
             Field.clearTail(snake);
             moveSnake();
-            Field.score(snake.getApplesEaten());
             checkCollisions();
-            Field.drawSnake(snake);
+            suicide();
+            eatApple();
+            Field.score(snake.getApplesEaten());
         }
     }
 
@@ -61,15 +63,35 @@ public class Game {
         snake.move();
     }
 
-    private void checkCollisions() {
+    private void eatApple() {
         if (snake.getHead().equals(fruit.fruitPosition())) {
             snake.increaseSize(fruit.fruitPosition());
             generateFruit();
-        } else if (snake.getHead().getRow() == 0 || snake.getHead().getRow() == (Field.getHeight() - 1) ||
-                snake.getHead().getCol() == 0 || snake.getHead().getCol() == (Field.getWidth() - 1)) {
-            snake.die();
-        } else for (int i = 1; i < snake.getSnakeSize(); i++) {
-            if (snake.getHead().equals(snake.getFullSnake().get(i))) {
+        }
+    }
+
+    private void checkCollisions() {
+        switch (snake.getHead().getRow()) {
+            case 0:
+                snake.getHead().setRow(Field.getHeight());
+                break;
+            case 25:
+                snake.getHead().setRow(0);
+                break;
+        }
+        switch (snake.getHead().getCol()) {
+            case 0:
+                snake.getHead().setCol(Field.getWidth());
+                break;
+            case 100:
+                snake.getHead().setCol(0);
+                break;
+        }
+    }
+
+    private void suicide() {
+        for (int i = 1; i < snake.getSnakeSize(); i++) {
+            if (snake.getFullSnake().get(i).equals(snake.getHead())) {
                 snake.die();
             }
         }

@@ -18,7 +18,7 @@ public class Snake {
 
     public void increaseSize(Position position) {
         applesEaten++;
-        snake.addLast(position);
+        snake.addFirst(position);
     }
 
     public Snake() {

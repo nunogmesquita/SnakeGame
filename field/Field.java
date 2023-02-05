@@ -43,7 +43,7 @@ public final class Field {
         screen.setCursorPosition(null);
         screen.startScreen();
 
-        drawWalls();
+        // drawWalls();
         screen.refresh();
 
     }
@@ -116,4 +116,5 @@ public final class Field {
     public static Position randomScreenAppearance() {
         return new Position((int) (Math.random() * (Field.getWidth() - 2)) + 1, (int) (Math.random() * (Field.getHeight() - 2)) + 1);
     }
+
 }
